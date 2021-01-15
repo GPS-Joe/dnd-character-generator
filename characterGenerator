@@ -1,0 +1,113 @@
+/*
+ * Joseph Hughes
+ * Period 4
+ * Submitted 10-25-20
+ */
+
+class characterGenerator {
+
+    public Boolean nameOption = false;
+    /*
+     * nameOption sets up the ability for the user to input names,
+     * 		which I wanted to be able to do.
+     * It pairs with an if statement further down
+     */
+    public int STR = 3;
+    public int DEX = 3;
+    public int CON = 3;
+    public int INT = 3;
+    public int WIS = 3;
+    public int CHR = 3;
+    //default characteristic values for saving feature
+    public String character1 = "";
+    public String character2 = "";
+    public String character3 = "";
+    /*
+     * these strings are where information will be saved about the characters
+     * *note: we haven't learned arrays, otherwise I would have used those*
+     */
+
+    public void main(String[] args) {
+        System.out.println("Welcome to Joe's DnD Character Generator!");
+        Boolean nameOption = readLine("Custom names? *type true for yes, false for no*");
+        for (int i = 0; i > 2; i++) {
+            makeCharacter(i);
+        }
+        //Loop makes makeCharacter run 3 times. i is used for character identification.
+        System.out.println("Your characters have been saved. Please continue into the game.");
+    }
+
+    private void roll(String characteristic) {
+        int charStat = (int) Math.round(3 + Math.random() * ((18 - 3) + 1));
+        /*
+         * Math.round cuts values given by Math.random to appear as a 3D6 roll.
+         * The first 3 makes this happen thrice.
+         */
+        if (characteristic == "Strength") {
+            STR = charStat;
+        } else if (characteristic == "Dexterity") {
+            DEX = charStat;
+        } else if (characteristic == "Constitution") {
+            CON = charStat;
+        } else if (characteristic == "Intelligence") {
+            INT = charStat;
+        } else if (characteristic == "Wisdom") {
+            WIS = charStat;
+        } else if (characteristic == "Charisma") {
+            CHR = charStat;
+        }
+        //charStat is part of the saving feature
+        System.out.println(characteristic + ": " + charStat);
+        //prints value of characteristic
+    }
+
+    private void makeCharacter(Integer charNum) {
+        String name = "Javascri P'tismorefun";
+        //default name for redundancy
+        if (nameOption == true) {
+            name = readLine("Enter character name: ");
+            //This allows users to input custom names
+        } else {
+            if (charNum == 0) {
+                name = "Falroneth The Undesirable";
+            } else if (charNum == 1) {
+                name = "Niffroy Veopazzle";
+            } else {
+                name = "Princess Para Ruyewel";
+            }
+            /*
+             * names chosen based on i from character identification
+             * *note: we haven't learned arrays, otherwise I would have used those*
+             */
+        }
+        System.out.println(name);
+        roll("Strength");
+        roll("Dexterity");
+        roll("Constitution");
+        roll("Intelligence");
+        roll("Wisdom");
+        roll("Charisma");
+        if (charNum == 0) {
+            character1 = name + ", " + STR + ", " + DEX + ", " + CON + ", " + INT + ", " + WIS + ", " + CHR;
+        } else if (charNum == 1) {
+            character2 = name + ", " + STR + ", " + DEX + ", " + CON + ", " + INT + ", " + WIS + ", " + CHR;
+        } else {
+            character3 = name + ", " + STR + ", " + DEX + ", " + CON + ", " + INT + ", " + WIS + ", " + CHR;
+        }
+        STR = 3;
+        DEX = 3;
+        CON = 3;
+        INT = 3;
+        WIS = 3;
+        CHR = 3;
+        //data reset for redundancy, could theoretically be removed, but kept in case
+        /*
+         * character data is saved in a string
+         * *note: we haven't learned arrays, otherwise I would have used those*
+         * *note(1): since we haven't learned to save info to text files,
+         * 		information is stuck in the program,
+         * 		and will be overwritten if the program is restarted. 
+         */
+    }
+
+}
